@@ -1,0 +1,68 @@
+#include <iostream>
+#include <cstdlib>
+#include "stack.h"
+
+using namespace std;
+
+stack:: stack(){  //default constructor
+  head= new sNode;
+  head=NULL;
+}
+void stack::push(int i){
+  sNode* newp;
+  sNode* temp = head;
+  newp =new sNode(i);
+  if (head==NULL){
+    head=newp;
+    newp->next= NULL;
+  }
+  else{
+    while (temp-> next!=NULL){
+      temp=temp->next;
+    }
+    temp->next=newp;
+    newp->next=NULL;
+  }
+}
+
+int stack::top(){
+    if(empty()){
+    cout<<"error"<<endl;
+    exit(-1);
+  }
+  sNode *temp =head;
+  while(temp->next!=NULL){
+    temp=temp->next;
+  }
+  return temp->getValue();
+}
+
+void stack::pop(){
+  if(empty()){
+    cout<<"error"<<endl;
+    exit(-1);
+  }
+  sNode *temp =head;
+  sNode *top =head;
+  while(temp->next != NULL){
+    temp=temp->next;
+  }
+  temp->next=NULL;
+
+  if(top != temp){
+    while(top->next!=temp){
+      top=top->next;
+    }
+    top->next=NULL;
+    delete(temp);
+  }
+  else{
+    delete(temp);
+  }
+}
+bool stack::empty(){
+  if(head==NULL){
+    return true;
+  }
+  return false;
+}

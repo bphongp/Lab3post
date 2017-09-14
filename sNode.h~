@@ -1,0 +1,19 @@
+#ifndef SNODE_H
+#define SNODE_H
+
+#include <iostream>
+using namespace std;
+
+class sNode{
+ public:
+  sNode();
+  sNode(int i);
+  int getData();
+ private:
+  int value;
+  sNode *next;
+  friend class mystack;
+
+};
+
+#endif
